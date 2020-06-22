@@ -1,0 +1,12 @@
+<ngb-datepicker [(ngModel)]="date" (ngModelChange)="refreshSchedule()"></ngb-datepicker>
+
+<ngb-timepicker [(ngModel)]="time" [seconds]="seconds" (ngModelChange)="refreshSchedule()"></ngb-timepicker>
+
+<h2>{{ getDateTimeString() }}</h2>
+
+
+
+
+<li *ngFor="let vehicle of vehicleData">
+    {{ vehicle }}
+</li>

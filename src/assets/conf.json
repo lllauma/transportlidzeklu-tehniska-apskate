@@ -1,0 +1,5 @@
+{
+    "dbURL" : "assets/db.json",
+    "InspectionLineCount" : 12,
+    "MaxInspectienLineLength" : 14
+}
