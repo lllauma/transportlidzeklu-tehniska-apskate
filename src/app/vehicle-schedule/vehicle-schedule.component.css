@@ -1,0 +1,59 @@
+.vehicle-schedule {
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 20px;
+}
+
+.search-area {
+    width: 20%;
+    float: left;
+}
+
+.selected-datetime {
+    text-align: center;
+    padding-top: 10px;
+    width: 240px;
+}
+
+.vehicle-schedule-table {
+    table-layout: fixed;
+    width: 1000px;
+}
+
+.vehicle-schedule-table td {    
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.inspection-line-places {
+    display: inline-block;
+    padding-top: 20px;
+}
+
+.vehicle-schedule-table th {
+    text-align: center;
+    background-color: #0275d8;
+}
+
+.inspection-line-places {
+    padding-right: 10px;
+}
+
+.inspection-line-places-table td {
+    text-align: center;
+}
+
+.table-hover-cells > tbody > tr > th:hover,
+.table-hover-cells > tbody > tr > td:hover {
+    background-color: #e1e6f9;
+}
+    
+.table-hover-cells > tbody > tr > th.active:hover,
+.table-hover-cells > tbody > tr > td.active:hover,
+.table-hover-cells > tbody > tr.active > th:hover,
+.table-hover-cells > tbody > tr.active > td:hover {
+    background-color: transparent;
+}
+
+.search-area {
+    padding-left: 20px;
+}

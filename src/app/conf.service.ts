@@ -1,33 +1,25 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 import { Conf } from './conf';
+import * as ConfFile from '../assets/conf.json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfService {
-  confURL : string = 'assets/conf.json';
-  conf : Conf = {
-    dbURL: 'null',
+  private confURL : string = 'assets/conf.json';
+  private conf : Conf = {
+    dbURL: null,
     InspectionLineCount: null,
     MaxInspectienLineLength: null
   };
 
-  constructor(private HttpClient: HttpClient) { 
-    this.HttpClient
-      .get(this.confURL)
-      .subscribe(data => {
-        this.conf.dbURL = data['dbURL'];
-        this.conf.InspectionLineCount = data['InspectionLineCount'];
-        this.conf.MaxInspectienLineLength = data['MaxInspectienLineLength'];
-      })
-
-    console.log(this.conf);
+  constructor() {
+    this.conf.dbURL = ConfFile["dbURL"];
+    this.conf.InspectionLineCount = ConfFile["InspectionLineCount"];
+    this.conf.MaxInspectienLineLength = ConfFile["MaxInspectienLineLength"];
   }
 
   getConf() : Conf{
     return this.conf;
   }
-
-
 }

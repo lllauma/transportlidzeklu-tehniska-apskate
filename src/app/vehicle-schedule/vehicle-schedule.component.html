@@ -1,12 +1,46 @@
-<ngb-datepicker [(ngModel)]="date" (ngModelChange)="refreshSchedule()"></ngb-datepicker>
+<div>
+    
+    <div class="search-area">
+        <div class="selected-datetime"><h1>{{ getDateTimeString() }}</h1></div>
+        <ngb-datepicker [(ngModel)]="date" (ngModelChange)="refreshSchedule()"></ngb-datepicker>
+        <ngb-timepicker class="timepicker" [(ngModel)]="time" [seconds]="seconds" (ngModelChange)="refreshSchedule()"></ngb-timepicker>
+    </div>
 
-<ngb-timepicker [(ngModel)]="time" [seconds]="seconds" (ngModelChange)="refreshSchedule()"></ngb-timepicker>
+    <div class="inspection-line-places">
+        <table class="table table-bordered inspection-line-places-table">
+            <thead>
+                <tr>
+                    <th>Vieta</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let inspectionLinePlace of inspectionLinePlaces()">
+                    <td>
+                        {{inspectionLinePlace + 1}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-<h2>{{ getDateTimeString() }}</h2>
+    <div class="vehicle-schedule">
 
-
-
-
-<li *ngFor="let vehicle of vehicleData">
-    {{ vehicle }}
-</li>
+        <table class="table table-bordered vehicle-schedule-table table-hover-cells">
+            <thead>
+                <tr>
+                    <th *ngFor="let inspectionLine of inspectionLines()">
+                        {{inspectionLine + 1}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let inspectionLine of vehicleSchedule">
+                    <td *ngFor="let vehicle of inspectionLine" (click)="removeTL(vehicle)">
+                        <div *ngIf="vehicle != null; else emptySpace">{{vehicle.rn}}</div>
+                        <ng-template #emptySpace></ng-template>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
