@@ -5,7 +5,7 @@ Izstrādāta vizuāla WEB lapa, kurā tiek parādīti transportlīdzekļi(TL), k
 ## Tehniskais apraksts
 Risinājums izstrādāts, izmantojot Angular 9.
 Palaišanas instrukcija:
-    1. Instalēt Node Package Manager (NPM)
+    1. Instalēt Node Package Manager (NPM) jaunāko versiju (14.4.0) `https://nodejs.org/en/`
     2. Node js terminālī instalēt Angular CLI `npm install -g @angular/cli`
     3. Klonēt github repozitoriju `https://github.com/lllauma/transportlidzeklu-tehniska-apskate`
     4. Attiecīgajā mapē no Node js termināļa palaist projektu `ng serve`
