@@ -13,12 +13,11 @@ import { Vehicle } from '../vehicle';
 })
 export class VehicleScheduleComponent {
 
-  private date: NgbDateStruct;
-  private time: NgbTimeStruct;
-  private seconds: boolean = true;
+  date: NgbDateStruct;
+  time: NgbTimeStruct;
+  seconds: boolean = true;
+  vehicleSchedule: object[][] = [];
   private conf: Conf;
-  private vehicleData: Vehicle[];
-  private vehicleSchedule: object[][] = [];
   
   constructor(private calendar: NgbCalendar, private datepipe: DatePipe, private dataService: VehicleDataService, private confService: ConfService) {
     this.date = this.getToday();
@@ -28,10 +27,10 @@ export class VehicleScheduleComponent {
   }
 
   refreshSchedule(): void {
-    this.vehicleData = this.dataService.getVehicles(this.getSelectedDateTime());
+    let vehicleData: Vehicle[] = this.dataService.getVehicles(this.getSelectedDateTime());
     this.vehicleSchedule = [];
     this.initializeInspectionLineArray();
-    for (let vehicle of this.vehicleData) {
+    for (let vehicle of vehicleData) {
       this.vehicleSchedule[vehicle.numurs-1].push(vehicle);
     }
     // transpose array to simplify html table creation
@@ -98,11 +97,11 @@ export class VehicleScheduleComponent {
     return transposed;
   }
 
-  private inspectionLines(): number[] {
+  inspectionLines(): number[] {
     return [...Array(this.conf.InspectionLineCount).keys()];
   }
 
-  private inspectionLinePlaces(): number[] {
+  inspectionLinePlaces(): number[] {
     return [...Array(this.conf.MaxInspectienLineLength).keys()];    
   }
 
