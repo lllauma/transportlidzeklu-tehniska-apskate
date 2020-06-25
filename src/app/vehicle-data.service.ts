@@ -20,7 +20,6 @@ export class VehicleDataService {
 
   getVehicles(selectedDateTime : Date) : Vehicle[]{
     let vehicles: Vehicle[] = [];
-    console.log(VehicleData);
     for (const vehicle of this.vehicleData) {
       if (this.isInInspectionArea(selectedDateTime, this.toDate(vehicle.datums), this.toDate(vehicle.s_datums))){
         vehicles.push(vehicle);

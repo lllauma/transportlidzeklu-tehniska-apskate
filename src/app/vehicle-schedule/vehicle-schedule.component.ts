@@ -27,7 +27,7 @@ export class VehicleScheduleComponent {
     this.refreshSchedule();
   }
 
-  private refreshSchedule(): void {
+  refreshSchedule(): void {
     this.vehicleData = this.dataService.getVehicles(this.getSelectedDateTime());
     this.vehicleSchedule = [];
     this.initializeInspectionLineArray();
@@ -36,10 +36,9 @@ export class VehicleScheduleComponent {
     }
     // transpose array to simplify html table creation
     this.vehicleSchedule = this.transposeArray(this.vehicleSchedule);
-    console.log(this.vehicleSchedule);
   }
 
-  private removeTL(vehicle: Vehicle): void {
+  removeVehicle(vehicle: Vehicle): void {
     if (vehicle != null){
       if (vehicle.s_datums == null) {
         if (window.confirm('Vai izņemt TL ' + vehicle.rn + ' no līnijas?')) {
@@ -47,9 +46,13 @@ export class VehicleScheduleComponent {
           this.refreshSchedule();
         }
       } else {
-        window.alert('TL nevar izņemt - nav pabeigta tehniskā apskate!');
+        window.alert('Transportlīdzekli nevar izņemt - tehniskā apskate ir pabeigta!');
       }
     }
+  }
+
+  getDateTimeString() : string {
+    return this.datepipe.transform(this.getSelectedDateTime(), 'dd.MM.yyyy hh:mm:ss');
   }
 
   private getToday(): NgbDateStruct{
@@ -65,10 +68,6 @@ export class VehicleScheduleComponent {
     };
   }
 
-  private getDateTimeString() : string {
-    return this.datepipe.transform(this.getSelectedDateTime(), 'dd.MM.yyyy hh:mm:ss');
-  }
-
   private getSelectedDateTime() : Date {
     return new Date(this.date.year, this.date.month-1, this.date.day, this.time.hour, this.time.minute, this.time.second);
   }
@@ -77,7 +76,6 @@ export class VehicleScheduleComponent {
     for (let i = 0; i < this.conf.InspectionLineCount; i++) {
       this.vehicleSchedule[i] = [];
     }
-    console.log(this.vehicleSchedule);
   }
 
   private transposeArray(array: object[][]): object[][] {

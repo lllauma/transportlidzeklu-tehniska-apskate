@@ -35,7 +35,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let inspectionLine of vehicleSchedule">
-                    <td *ngFor="let vehicle of inspectionLine" (click)="removeTL(vehicle)">
+                    <td *ngFor="let vehicle of inspectionLine" (click)="removeVehicle(vehicle)">
                         <div *ngIf="vehicle != null; else emptySpace">{{vehicle.rn}}</div>
                         <ng-template #emptySpace></ng-template>
                     </td>
